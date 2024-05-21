@@ -1,6 +1,14 @@
 // import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { addReadBooks, addwishlistBooks } from "../Utilities/localStortage";
+import {
+  addReadBooks,
+  addwishlistBooks,
+  getReadBooksIdFromLs,
+  getWishlistBooksIdFromLs,
+} from "../Utilities/localStortage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Button from "../Button/Button";
 
 const BookDetails = () => {
   const location = useLocation();
@@ -22,14 +30,29 @@ const BookDetails = () => {
   if (!book) return <div>Loading...</div>;
 
   const handleReadAdd = () => {
-    addReadBooks(book_id);
+    const readBooks = getReadBooksIdFromLs();
+
+    if (!readBooks.includes(book_id)) {
+      addReadBooks(book_id);
+      toast.success("Added succsesfully to the readList");
+    } else {
+      toast.warning("Allready added to the readList");
+    }
   };
   const handleWishlist = () => {
-    addwishlistBooks(book_id);
+    const wishlistBooks = getWishlistBooksIdFromLs();
+
+    if (!wishlistBooks.includes(book_id)) {
+      addwishlistBooks(book_id);
+      toast.success("Added succsesfully to the wishlist");
+    } else {
+      toast.warning("Allready added to the wishlist");
+    }
   };
 
   return (
     <div className="flex justify-between flex-col lg:flex-row  my-6 gap-3">
+      <ToastContainer />
       <div className="w-full lg:w-2/4 bg-gray-200  flex justify-center items-center  rounded-lg">
         <img
           src={image}
@@ -81,20 +104,18 @@ const BookDetails = () => {
           </div>
           <div className="flex">
             <div>
-              <button
-                onClick={handleReadAdd}
-                className="btn bg-[#23BE0A] hover:bg-[#23BE0A] my-4 text-white font-bold mr-3"
-              >
-                Read
-              </button>
+              <Button
+                hnadlebtn={handleReadAdd}
+                bgstyle="bg-[#23BE0A]"
+                text="Read"
+              />
             </div>
             <div>
-              <button
-                onClick={handleWishlist}
-                className="btn bg-[#23BE0A] hover:bg-[#23BE0A] my-4 text-white font-bold mr-3"
-              >
-                Wishlist
-              </button>
+              <Button
+                hnadlebtn={handleWishlist}
+                bgstyle="bg-[#50B1C9]"
+                text="Wishlist"
+              />
             </div>
           </div>
         </div>

@@ -11,9 +11,10 @@ const Banner = () => {
             className="max-w-sm rounded-lg shadow-2xl"
             style={{ transform: "skewX(-20deg)" }}
           />
-          <div>
+          <div className="">
             <h1 className="text-5xl font-bold">
-              Box Office News!Box O! <br />
+              Dive into the World of <br /> Words with Us
+              <br />
             </h1>
 
             <Link to="/listedtbooks">

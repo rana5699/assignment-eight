@@ -42,7 +42,7 @@ function App() {
   ]);
 
   return (
-    <div className="w-10/12 mx-auto my-5">
+    <div className="w-10/12 mx-auto my-5 font-work-sans ">
       <RouterProvider router={router} />
     </div>
   );
