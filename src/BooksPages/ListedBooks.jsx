@@ -38,6 +38,16 @@ const ListedBooks = () => {
       <div className="bg-[#1313130D] rounded-lg mx-auto text-center">
         <h2 className="font-bold text-2xl p-4">Books</h2>
       </div>
+      <div className="mx-auto text-center my-5">
+        <select className="btn bg-[#23BE0A] hover:bg-[#1F8C04] text-white font-bold max-w-xs rounded-md px-3 py-2">
+          <option default disabled>
+            Sort by
+          </option>
+          <option value="rating">Rating</option>
+          <option value="yearOfPublish">Year Of Publish</option>
+          <option value="pages">Pages</option>
+        </select>
+      </div>
       <div className="my-7">
         <div role="tablist" className="tabs tabs-lifted">
           <input
